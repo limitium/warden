@@ -22,10 +22,17 @@ services:
    prom:
       image: 'prom/prometheus:latest'
       restart: always
+      command:
+         - '--config.file=/etc/prometheus/prometheus.yml'
+         - '--storage.tsdb.path=/prometheus'
+         - '--web.console.libraries=/etc/prometheus/console_libraries'
+         - '--web.console.templates=/etc/prometheus/consoles'
+         - '--storage.tsdb.retention.time=100d'
+         - '--storage.tsdb.retention.size=10GB'
       expose:
          - '9090'
       volumes: 
-        - ./prom:/etc/prometheus:ro
+        - ./prom/provisioning:/etc/prometheus:ro
         - ./prom/data:/prometheus:rw
       environment:
          VIRTUAL_HOST: prom.lvh.me
@@ -35,7 +42,7 @@ services:
       expose:
          - '3000'
       volumes:
-         - ./graf/data:/var/lib/grafana:rw
          - ./graf/provisioning:/etc/grafana/provisioning:ro
+         - ./graf/data:/var/lib/grafana:rw
       environment:
          VIRTUAL_HOST: graf.lvh.me
