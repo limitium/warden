@@ -25,16 +25,32 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {
+            "align": null
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 5,
-        "w": 7,
+        "h": 6,
+        "w": 14,
         "x": 0,
         "y": 0
       },
@@ -141,8 +157,8 @@
               "value": "null"
             }
           ],
-          "max": 100,
-          "min": 0,
+          "max": 95,
+          "min": 5,
           "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
@@ -170,9 +186,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
-        "x": 7,
+        "x": 14,
         "y": 0
       },
       "id": 14,
@@ -202,7 +218,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
+      "title": "Humidity",
       "type": "gauge"
     },
     {
@@ -242,9 +258,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
-        "x": 12,
+        "x": 19,
         "y": 0
       },
       "id": 16,
@@ -273,7 +289,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
+      "title": "Moisture",
       "type": "gauge"
     },
     {
@@ -292,105 +308,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 5,
-        "w": 7,
-        "x": 17,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 20,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pluginVersion": "7.1.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "gas_eco2",
-          "interval": "",
-          "legendFormat": "Gas",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "eCo2",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:538",
-          "format": "ppm",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:539",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 7,
+        "h": 6,
+        "w": 14,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "hiddenSeries": false,
       "id": 2,
@@ -496,8 +417,8 @@
               "value": "null"
             }
           ],
-          "max": 40,
-          "min": 15,
+          "max": 35,
+          "min": 12,
           "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
@@ -529,10 +450,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
-        "x": 7,
-        "y": 5
+        "x": 14,
+        "y": 6
       },
       "id": 17,
       "links": [],
@@ -561,7 +482,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
+      "title": "Air",
       "type": "gauge"
     },
     {
@@ -583,8 +504,8 @@
               "value": "null"
             }
           ],
-          "max": 40,
-          "min": 15,
+          "max": 35,
+          "min": 13,
           "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
@@ -616,10 +537,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
-        "x": 12,
-        "y": 5
+        "x": 19,
+        "y": 6
       },
       "id": 18,
       "links": [],
@@ -648,100 +569,8 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
+      "title": "Ground",
       "type": "gauge"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 7,
-        "x": 17,
-        "y": 5
-      },
-      "hiddenSeries": false,
-      "id": 12,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pluginVersion": "7.1.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "ground_illuminance",
-          "legendFormat": "Ground",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Illuminance",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "lux",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     },
     {
       "aliasColors": {},
@@ -761,10 +590,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 5,
-        "w": 12,
+        "h": 6,
+        "w": 14,
         "x": 0,
-        "y": 10
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 10,
@@ -839,101 +668,6 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "hiddenSeries": false,
-      "id": 21,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pluginVersion": "7.1.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "gas_etvoc",
-          "interval": "",
-          "legendFormat": "Gas",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "eTVOC",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:538",
-          "format": "conppb",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:539",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "cacheTimeout": null,
       "datasource": "Prometheus",
       "description": "",
@@ -979,15 +713,14 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 0,
-        "y": 15
+        "h": 6,
+        "w": 5,
+        "x": 14,
+        "y": 12
       },
       "id": 19,
       "links": [],
       "options": {
-        "displayMode": "lcd",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -996,7 +729,8 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "7.1.2",
       "targets": [
@@ -1011,53 +745,114 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
-      "type": "bargauge"
+      "title": "Conductivity",
+      "type": "gauge"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "links": []
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "yellow",
+                "value": null
+              }
+            ]
+          },
+          "unit": "lux"
         },
         "overrides": []
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
-        "y": 15
+        "h": 6,
+        "w": 3,
+        "x": 19,
+        "y": 12
       },
-      "hiddenSeries": false,
-      "id": 8,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
       },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
       "pluginVersion": "7.1.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "ground_illuminance",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Ground",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Illuminance",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 5
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 2,
+        "x": 22,
+        "y": 12
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.2",
       "targets": [
         {
           "expr": "air_battery",
@@ -1067,48 +862,10 @@
           "refId": "A"
         }
       ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
       "title": "Battery",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:229",
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:230",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "stat"
     }
   ],
   "refresh": "5s",
@@ -1119,7 +876,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -1139,5 +896,5 @@
   "timezone": "",
   "title": "Warden",
   "uid": "Warden",
-  "version": 1
+  "version": 6
 }
