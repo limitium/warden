@@ -79,20 +79,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ground_moisture",
+          "expr": "mars1_HHCCJCY0198fe_moisture",
+          "instant": false,
+          "interval": "",
           "legendFormat": "Ground",
           "refId": "B"
         },
         {
-          "expr": "air_humidity",
+          "expr": "mars1_LYWSD03MMC4604_humidity",
+          "interval": "",
           "legendFormat": "Air",
           "refId": "A"
-        },
-        {
-          "expr": "gas_humidity",
-          "interval": "",
-          "legendFormat": "Gas",
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -208,7 +205,7 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "air_humidity",
+          "expr": "mars1_LYWSD03MMC4604_humidity",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -249,7 +246,7 @@
               },
               {
                 "color": "red",
-                "value": 60
+                "value": 75
               }
             ]
           },
@@ -279,7 +276,7 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "ground_moisture",
+          "expr": "mars1_HHCCJCY0198fe_moisture",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -338,20 +335,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ground_temperature",
+          "expr": "mars1_HHCCJCY0198fe_temperature",
+          "interval": "",
           "legendFormat": "Ground",
           "refId": "B"
         },
         {
-          "expr": "air_temperature",
+          "expr": "mars1_LYWSD03MMC4604_temperature",
+          "interval": "",
           "legendFormat": "Air",
           "refId": "A"
-        },
-        {
-          "expr": "gas_temperature",
-          "interval": "",
-          "legendFormat": "Gas",
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -472,7 +465,7 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "air_temperature",
+          "expr": "mars1_LYWSD03MMC4604_temperature",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -559,7 +552,7 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "ground_temperature",
+          "expr": "mars1_HHCCJCY0198fe_temperature",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -620,7 +613,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ground_fertility",
+          "expr": "mars1_HHCCJCY0198fe_fertility",
+          "instant": false,
+          "interval": "",
           "legendFormat": "Ground",
           "refId": "A"
         }
@@ -688,7 +683,7 @@
               "value": "null"
             }
           ],
-          "max": 1000,
+          "max": 3000,
           "min": 0,
           "nullValueMode": "connected",
           "thresholds": {
@@ -700,11 +695,15 @@
               },
               {
                 "color": "green",
-                "value": 200
+                "value": 1000
+              },
+              {
+                "color": "#EAB839",
+                "value": 2000
               },
               {
                 "color": "red",
-                "value": 800
+                "value": 3000
               }
             ]
           },
@@ -735,7 +734,7 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "ground_fertility",
+          "expr": "mars1_HHCCJCY0198fe_fertility",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -792,7 +791,7 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "ground_illuminance",
+          "expr": "mars1_HHCCJCY0198fe_illuminance",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -855,7 +854,8 @@
       "pluginVersion": "7.1.2",
       "targets": [
         {
-          "expr": "air_battery",
+          "expr": "mars1_LYWSD03MMC4604_battery",
+          "format": "time_series",
           "instant": false,
           "interval": "",
           "legendFormat": "MMC",
@@ -876,7 +876,7 @@
     "list": []
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
@@ -896,5 +896,5 @@
   "timezone": "",
   "title": "Warden",
   "uid": "Warden",
-  "version": 6
+  "version": 8
 }

@@ -2,10 +2,10 @@
 
 # Logging
 logging:
-#  logfile:  ''                                     # Optional default '' (stdout)
- level:    'info'                                 # Optional default 'info'
+  logfile:  ''                                     # Optional default '' (stdout)
+  level:    'info'                                 # Optional default 'info'
 
-# MQTT All values default to paho.mqtt.client defaults
+  # MQTT All values default to paho.mqtt.client defaults
 mqtt:
   host:       'broker.mqttdashboard.com'                   # Optional default 'localhost'
   port:       1883                                 # Optional default '1883'
@@ -20,6 +20,7 @@ mqtt:
 #    cert_reqs:                                     # Optional
 #    tls_version:                                   # Optional
 #    ciphers:                                       # Optional
+  topic: 'lim/ward/#'
 
 # Prometheus
 prometheus:

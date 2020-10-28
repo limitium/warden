@@ -12,11 +12,11 @@ services:
       volumes:
          - '/var/run/docker.sock:/tmp/docker.sock:ro'
    mqtt2prom:
-     image: ghcr.io/fhemberger/mqtt_exporter
+     image: limitium/mqtt2prom
      expose:
        - '9344'
      volumes:
-       - ./mqtt2prom:/usr/src/app/conf:ro
+       - ./mqtt2prom/provisioning:/usr/src/app/conf:ro
      environment:
        VIRTUAL_HOST: mqtt2prom.lvh.me
    prom:
@@ -47,4 +47,4 @@ services:
          - ./graf/provisioning:/etc/grafana/provisioning:ro
          - ./graf/data:/var/lib/grafana:rw
       environment:
-         VIRTUAL_HOST: graf.lvh.me
+         VIRTUAL_HOST: graf.limitium.art
