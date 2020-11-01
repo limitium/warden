@@ -18,7 +18,7 @@ services:
      volumes:
        - ./mqtt2prom/provisioning:/usr/src/app/conf:ro
      environment:
-       VIRTUAL_HOST: mqtt2prom.lvh.me
+        VIRTUAL_HOST: mqtt2prom.${HOST}
    prom:
       image: 'prom/prometheus:latest'
       restart: always
@@ -35,7 +35,7 @@ services:
         - ./prom/provisioning:/etc/prometheus:ro
         - ./prom/data:/prometheus:rw
       environment:
-         VIRTUAL_HOST: prom.lvh.me
+         VIRTUAL_HOST: prom.${HOST}
    graf:
       image: 'grafana/grafana:7.1.2'
       restart: always
@@ -47,4 +47,4 @@ services:
          - ./graf/provisioning:/etc/grafana/provisioning:ro
          - ./graf/data:/var/lib/grafana:rw
       environment:
-         VIRTUAL_HOST: graf.limitium.art
+         VIRTUAL_HOST: graf.${HOST}

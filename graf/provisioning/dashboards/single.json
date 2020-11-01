@@ -87,6 +87,7 @@
         },
         {
           "expr": "mars1_LYWSD03MMC4604_humidity",
+          "instant": false,
           "interval": "",
           "legendFormat": "Air",
           "refId": "A"
