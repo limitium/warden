@@ -13,6 +13,7 @@ services:
          - '/var/run/docker.sock:/tmp/docker.sock:ro'
    mqtt2prom:
      image: limitium/mqtt2prom
+     restart: always
      expose:
        - '9344'
      volumes:
@@ -58,3 +59,7 @@ services:
          - '8081'
       environment:
          ENABLE_METRICS: 'true'
+   notifier_tel:
+      image: falafel/limitiumbot:0.2
+      environment: 
+         BOT_TOKEN: ${BOT_TOKEN}
