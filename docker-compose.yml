@@ -50,6 +50,7 @@ services:
          - ./graf/grafana.ini:/etc/grafana/grafana.ini:ro
       environment:
          VIRTUAL_HOST: graf.${HOST}
+         GF_SERVER_ROOT_URL: http://graf.${HOST}:3000
          GF_RENDERING_SERVER_URL: http://renderer:8081/render
          GF_RENDERING_CALLBACK_URL: http://graf:3000/
          GF_LOG_FILTERS: rendering:debug
