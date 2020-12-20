@@ -4,4 +4,4 @@ datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
-    url: http://192.168.1.185:9090
+    url: http://prom:9090
