@@ -37,7 +37,7 @@ services:
       environment:
          VIRTUAL_HOST: prom.${HOST}
    graf:
-      image: 'grafana/grafana:7.1.2'
+      image: 'grafana/grafana:7.3.6'
       restart: always
       ports:
          - '3000:3000'
@@ -46,5 +46,15 @@ services:
       volumes:
          - ./graf/provisioning:/etc/grafana/provisioning:ro
          - ./graf/data:/var/lib/grafana:rw
+         - ./graf/grafana.ini:/etc/grafana/grafana.ini:ro
       environment:
          VIRTUAL_HOST: graf.${HOST}
+         GF_RENDERING_SERVER_URL: http://renderer:8081/render
+         GF_RENDERING_CALLBACK_URL: http://graf:3000/
+         GF_LOG_FILTERS: rendering:debug
+   renderer:
+      image: grafana/grafana-image-renderer:latest
+      expose: 
+         - '8081'
+      environment:
+         ENABLE_METRICS: 'true'
