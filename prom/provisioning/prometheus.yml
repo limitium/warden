@@ -26,19 +26,17 @@ scrape_configs:
     # scheme defaults to 'http'.
     static_configs:
       - targets: ['mqtt2prom:9344']
-
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'from_grafana'
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
       - targets: ['graf:3000']
-      
   - job_name: 'from_renderer'
       # metrics_path defaults to '/metrics'
       # scheme defaults to 'http'.
-      static_configs:
-        - targets: ['renderer:8081']
+    static_configs:
+      - targets: ['renderer:8081']
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   # - job_name: 'hive2prom'
     # metrics_path defaults to '/metrics'

@@ -53,14 +53,16 @@ services:
          GF_SERVER_ROOT_URL: http://graf.${HOST}:3000
          GF_RENDERING_SERVER_URL: http://renderer:8081/render
          GF_RENDERING_CALLBACK_URL: http://graf:3000/
-         GF_LOG_FILTERS: rendering:debug
+         GF_LOG_FILTERS: rendering:info
    renderer:
-      image: grafana/grafana-image-renderer:latest
+      image: adejong/grafana-image-renderer-pi:1.0.8-beta2
+      restart: always
       expose: 
          - '8081'
       environment:
          ENABLE_METRICS: 'true'
+         LOG_LEVEL: 'info'
    notifier_tel:
-      image: falafel/limitiumbot:0.2
+      image: falafel/limitiumbot:0.2arm64v8
       environment: 
          BOT_TOKEN: ${BOT_TOKEN}
