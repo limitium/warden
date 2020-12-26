@@ -1,5 +1,17 @@
 version: '3'
 services:
+   cadvisor:
+      image: gcr.io/google-containers/cadvisor:latest
+      ports:
+        - '8080:8080'
+      expose:
+        - '8080'
+      volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:rw
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
    nginx:
       image: budry/jwilder-nginx-proxy-arm
       restart: always
@@ -54,6 +66,7 @@ services:
          GF_RENDERING_SERVER_URL: http://renderer:8081/render
          GF_RENDERING_CALLBACK_URL: http://graf:3000/
          GF_LOG_FILTERS: rendering:info
+         GF_TELEGRAM_BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
    renderer:
       image: adejong/grafana-image-renderer-pi:1.0.8-beta2
       restart: always
@@ -65,4 +78,4 @@ services:
    notifier_tel:
       image: falafel/limitiumbot:0.2arm64v8
       environment: 
-         BOT_TOKEN: ${BOT_TOKEN}
+         BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}

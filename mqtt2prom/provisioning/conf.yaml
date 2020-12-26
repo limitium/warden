@@ -20,7 +20,8 @@ mqtt:
 #    cert_reqs:                                     # Optional
 #    tls_version:                                   # Optional
 #    ciphers:                                       # Optional
-  topic: 'lim/ward/#'
+  topic: 'space/bloomy/#'
+  metric_ttl: 1800
 
 # Prometheus
 prometheus:
