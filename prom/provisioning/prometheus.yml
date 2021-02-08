@@ -1,7 +1,7 @@
 # my global config
 global:
-  scrape_interval:     5s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 5s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  scrape_interval:     30s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 120s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
 # Alertmanager configuration
@@ -22,23 +22,26 @@ scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'from_mqtt2prom'
     metrics_path: '/'
+    scrape_interval: 10s
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
       - targets: ['mqtt2prom:9344']
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'from_grafana'
+    scrape_interval: 60s  
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
       - targets: ['graf:3000']
   - job_name: 'from_renderer'
+    scrape_interval: 120s
       # metrics_path defaults to '/metrics'
       # scheme defaults to 'http'.
     static_configs:
       - targets: ['renderer:8081']
   - job_name: cadvisor
-    scrape_interval: 5s
+    scrape_interval: 60s
     static_configs:
       - targets: ['cadvisor:8080']
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
