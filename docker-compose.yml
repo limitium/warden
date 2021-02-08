@@ -30,8 +30,8 @@ services:
        - '9344'
      volumes:
        - ./mqtt2prom/provisioning:/usr/src/app/conf:ro
-     environment:
-        VIRTUAL_HOST: mqtt2prom.${HOST}
+   #   environment:
+      #   VIRTUAL_HOST: mqtt2prom.${HOST}
    prom:
       image: 'prom/prometheus:latest'
       restart: always
@@ -47,10 +47,10 @@ services:
       volumes: 
         - ./prom/provisioning:/etc/prometheus:ro
         - ./prom/data:/prometheus:rw
-      environment:
-         VIRTUAL_HOST: prom.${HOST}
+      # environment:
+         # VIRTUAL_HOST: prom.${HOST}
    graf:
-      image: 'grafana/grafana:7.3.6'
+      image: 'limitium/grafana-arm32v7-linux:latest'
       restart: always
       ports:
          - '3000:3000'
@@ -61,10 +61,10 @@ services:
          - ./graf/data:/var/lib/grafana:rw
          - ./graf/grafana.ini:/etc/grafana/grafana.ini:ro
       environment:
-         VIRTUAL_HOST: graf.${HOST}
-         GF_SERVER_ROOT_URL: http://graf.${HOST}:3000
+         VIRTUAL_HOST: warden.${HOST}
+         GF_SERVER_ROOT_URL: http://warden.${HOST}:3000
          GF_RENDERING_SERVER_URL: http://renderer:8081/render
-         GF_RENDERING_CALLBACK_URL: http://graf:3000/
+         GF_RENDERING_CALLBACK_URL: http://warden:3000/
          GF_LOG_FILTERS: rendering:info
          GF_TELEGRAM_BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
    renderer:
@@ -74,8 +74,8 @@ services:
          - '8081'
       environment:
          ENABLE_METRICS: 'true'
-         LOG_LEVEL: 'info'
-   notifier_tel:
-      image: falafel/limitiumbot:0.2arm64v8
+         LOG_LEVEL: 'warn'
+   chat_identifier:
+      image: falafel/wardenbot:latest
       environment: 
          BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
