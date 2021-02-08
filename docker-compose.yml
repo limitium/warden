@@ -42,6 +42,8 @@ services:
          - '--web.console.templates=/etc/prometheus/consoles'
          - '--storage.tsdb.retention.time=100d'
          - '--storage.tsdb.retention.size=20GB'
+      ports:
+         - '9090:9090'
       expose:
          - '9090'
       volumes: 
@@ -62,7 +64,7 @@ services:
          - ./graf/grafana.ini:/etc/grafana/grafana.ini:ro
       environment:
          VIRTUAL_HOST: warden.${HOST}
-         GF_SERVER_ROOT_URL: http://warden.${HOST}:3000
+         GF_SERVER_ROOT_URL: http://warden.${HOST}
          GF_RENDERING_SERVER_URL: http://renderer:8081/render
          GF_RENDERING_CALLBACK_URL: http://warden:3000/
          GF_LOG_FILTERS: rendering:info
