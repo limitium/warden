@@ -1,7 +1,7 @@
 version: '3'
 services:
    cadvisor:
-      image: unibaktr/cadvisor:latest
+      image: thedavis/cadvisor-arm:latest
       ports:
         - '8080:8080'
       expose:
@@ -12,15 +12,16 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock:ro
         - /sys:/sys:ro
         - /var/lib/docker/:/var/lib/docker:ro
+        - /dev/disk/:/dev/disk:ro
    nginx:
       image: budry/jwilder-nginx-proxy-arm
       restart: always
       ports:
         - '80:80'
       depends_on:
-        - mqtt2prom
-        - prom
-        - graf
+        - warden
+        - grafana_system
+        - face
       volumes:
          - '/var/run/docker.sock:/tmp/docker.sock:ro'
    mqtt2prom:
@@ -30,9 +31,28 @@ services:
        - '9344'
      volumes:
        - ./mqtt2prom/provisioning:/usr/src/app/conf:ro
-   #   environment:
+   # #   environment:
       #   VIRTUAL_HOST: mqtt2prom.${HOST}
-   prom:
+   prometheus_system:
+      image: 'prom/prometheus:latest'
+      restart: always
+      command:
+         - '--config.file=/etc/prometheus/prometheus.yml'
+         - '--storage.tsdb.path=/prometheus'
+         - '--web.console.libraries=/etc/prometheus/console_libraries'
+         - '--web.console.templates=/etc/prometheus/consoles'
+         - '--storage.tsdb.retention.time=14d'
+         - '--storage.tsdb.retention.size=5GB'
+      ports:
+         - '9191:9090'
+      expose:
+         - '9090'
+      volumes: 
+         - ./prometheus_system/provisioning:/etc/prometheus:ro
+         - ./prometheus_system/data:/prometheus:rw
+      # environment:
+         # VIRTUAL_HOST: prom.${HOST}   
+   prometheus_user:
       image: 'prom/prometheus:latest'
       restart: always
       command:
@@ -47,11 +67,21 @@ services:
       expose:
          - '9090'
       volumes: 
-        - ./prom/provisioning:/etc/prometheus:ro
-        - ./prom/data:/prometheus:rw
+        - ./prometheus_user/provisioning:/etc/prometheus:ro
+        - ./prometheus_user/data:/prometheus:rw
       # environment:
          # VIRTUAL_HOST: prom.${HOST}
-   graf:
+   face:
+      image: 'limitium/bloomy-face:latest'
+      restart: always
+      entrypoint: hugo server --baseUrl=${HOST} --bind="0.0.0.0"
+      ports:
+         - '1313:1313'
+      expose:
+         - '1313'
+      environment:
+         VIRTUAL_HOST: ${HOST}
+   warden:
       image: 'limitium/grafana-arm32v7-linux:latest'
       restart: always
       ports:
@@ -59,15 +89,33 @@ services:
       expose:
          - '3000'
       volumes:
-         - ./graf/provisioning:/etc/grafana/provisioning:ro
-         - ./graf/data:/var/lib/grafana:rw
-         - ./graf/grafana.ini:/etc/grafana/grafana.ini:ro
+         - ./grafana_warden/provisioning:/etc/grafana/provisioning:ro
+         - ./grafana_warden/data:/var/lib/grafana:rw
+         - ./grafana_warden/grafana.ini:/etc/grafana/grafana.ini:ro
       environment:
          VIRTUAL_HOST: warden.${HOST}
          GF_SERVER_ROOT_URL: http://warden.${HOST}
          GF_RENDERING_SERVER_URL: http://renderer:8081/render
          GF_RENDERING_CALLBACK_URL: http://warden:3000/
          GF_LOG_FILTERS: rendering:info
+         GF_TELEGRAM_BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
+   grafana_system:
+      image: 'limitium/grafana-arm32v7-linux:latest'
+      restart: always
+      ports:
+         - '3001:3000'
+      expose:
+         - '3000'
+      volumes:
+         - ./grafana_system/provisioning:/etc/grafana/provisioning:ro
+         - ./grafana_system/data:/var/lib/grafana:rw
+         - ./grafana_system/grafana.ini:/etc/grafana/grafana.ini:ro
+      environment:
+         VIRTUAL_HOST: grafana.${HOST}
+         GF_SERVER_ROOT_URL: http://grafana_system.${HOST}
+         GF_RENDERING_SERVER_URL: http://renderer:8081/render
+         GF_RENDERING_CALLBACK_URL: http://grafana_system:3000/
+         GF_LOG_FILTERS: rendering:warn
          GF_TELEGRAM_BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
    renderer:
       image: adejong/grafana-image-renderer-pi:1.0.8-beta2
@@ -78,6 +126,12 @@ services:
          ENABLE_METRICS: 'true'
          LOG_LEVEL: 'warn'
    chat_identifier:
-      image: falafel/wardenbot:latest
+      image: falafel/wardenbotjs@sha256:81960d583db38dff94828bdeebed3bf7f16ce8a658963c5a77196f2583e3b6f0
       environment: 
          BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
+   smtp:
+      image: ixdotai/smtp:latest
+      expose:
+         - '25'
+      environment:
+         MAILNAME: no-reply@${HOST}

@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus_user
+    type: prometheus
+    access: proxy
+    url: http://prometheus_user:9090
+  - name: Prometheus_system
+    type: prometheus
+    access: proxy
+    url: http://prometheus_system:9090

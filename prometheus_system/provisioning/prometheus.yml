@@ -20,20 +20,12 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'from_mqtt2prom'
-    metrics_path: '/'
-    scrape_interval: 10s
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-    static_configs:
-      - targets: ['mqtt2prom:9344']
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'from_grafana'
     scrape_interval: 60s  
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-      - targets: ['graf:3000']
+      - targets: ['warden:3000']
   - job_name: 'from_renderer'
     scrape_interval: 120s
       # metrics_path defaults to '/metrics'
