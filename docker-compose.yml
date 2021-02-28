@@ -134,4 +134,4 @@ services:
       expose:
          - '25'
       environment:
-         MAILNAME: no-reply@${HOST}
+         MAILNAME: ${HOST}
