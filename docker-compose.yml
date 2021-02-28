@@ -27,6 +27,8 @@ services:
    mqtt2prom:
      image: limitium/mqtt2prom
      restart: always
+     ports:
+      - '9344:9344'
      expose:
        - '9344'
      volumes:
@@ -100,7 +102,7 @@ services:
          GF_LOG_FILTERS: rendering:info
          GF_TELEGRAM_BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
    grafana_system:
-      image: 'limitium/grafana-arm32v7-linux:latest'
+      image: 'grafana/grafana:latest'
       restart: always
       ports:
          - '3001:3000'
