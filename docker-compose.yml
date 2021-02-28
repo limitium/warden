@@ -126,7 +126,7 @@ services:
          ENABLE_METRICS: 'true'
          LOG_LEVEL: 'warn'
    chat_identifier:
-      image: falafel/wardenbotjs@sha256:81960d583db38dff94828bdeebed3bf7f16ce8a658963c5a77196f2583e3b6f0
+      image: falafel/wardenbotjs
       environment: 
          BOT_TOKEN: ${GF_TELEGRAM_BOT_TOKEN}
    smtp:
